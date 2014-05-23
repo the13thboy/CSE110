@@ -1,0 +1,23 @@
+Pseudocode:
+
+1. Verify that $_GET['username'],$_GET['sessionid'],$_GET['data'] are all set.
+  a. If user does not own a restaurant, redirect to 403 (Unauthorized) error
+  page.
+2. Parse JSON, build SQL queries
+  a. If JSON is not parse-able, redirect to 400 (Bad Request) error page.
+3. Open connection to SQL database
+  a. If database is not available, redirect to 503 (Service Unavailable) error
+  page
+4. Submit initialization queries first.
+  a. If any initialization queries fail, redirect to 500 (Internal Server Error)
+  error page with info about failure.
+5. Submit blocking queries.
+  a. If any blocking queries fail, redirect to 500 (Internal Server Error) error
+  page with info about failure.
+6. Submit non-blocking queries.
+  a. If any non-blocking fail, save error messages to $sqlErrors[].
+7. Close connection to SQL database.
+8. Format and display errors in $sqlErrors[].
+  a. Use 500 (Internal Server Error) error page to display.
+9. Return status messages in HTML format (since this is through the web
+    interface).
