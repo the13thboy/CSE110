@@ -21,3 +21,8 @@ Pseudocode:
   a. Use 500 (Internal Server Error) error page to display.
 9. Return status messages in HTML format (since this is through the web
     interface).
+
+Notes:
+
+magic_quotes_gpc was removed in PHP 5.4.0
+> We really shouldn't be using it because it's just a stub now.
