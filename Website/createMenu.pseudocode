@@ -8,7 +8,7 @@ Pseudocode:
   Found) error page.
   d. If user does not own any restaurants, redirect to 403 (Forbidden) error
   page.
-  e. 
+  e. ???
 2. Parse JSON, build SQL queries
   a. If JSON is not parse-able, redirect to 400 (Bad Request) error page.
 3. Open connection to SQL database
@@ -16,12 +16,10 @@ Pseudocode:
   page
 4. Submit initialization queries first.
   a. If any initialization queries fail, close connection and redirect to 500
-  (Internal Server Error)
-  error page with info about failure.
+  (Internal Server Error) error page with info about failure.
 5. Submit blocking queries.
   a. If any blocking queries fail, close connection and redirect to 500
-  (Internal Server Error) error page.
-  page with info about failure.
+  (Internal Server Error) error page with info about failure.
 6. Submit non-blocking queries.
   a. If any non-blocking queries fail, save error messages to $sqlErrors[].
 7. Close connection to SQL database.
