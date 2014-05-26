@@ -1,26 +1,36 @@
 Pseudocode:
 
 1. Verify that $_GET['username'],$_GET['sessionid'],$_GET['data'] are all set.
-  a. If user does not own a restaurant, redirect to 403 (Unauthorized) error
+  a. If username is bogus, redirect to 401 (Unauthorized) error page.
+  b. If sessionid is bogus (does not match user), redirect to 401 (Unauthorized)
+  error page.
+  c. If menu in question is bogus (not even on Yelp), redirect to 404 (Not
+  Found) error page.
+  d. If user does not own any restaurants, redirect to 403 (Forbidden) error
   page.
+  e. 
 2. Parse JSON, build SQL queries
   a. If JSON is not parse-able, redirect to 400 (Bad Request) error page.
 3. Open connection to SQL database
   a. If database is not available, redirect to 503 (Service Unavailable) error
   page
 4. Submit initialization queries first.
-  a. If any initialization queries fail, redirect to 500 (Internal Server Error)
+  a. If any initialization queries fail, close connection and redirect to 500
+  (Internal Server Error)
   error page with info about failure.
 5. Submit blocking queries.
-  a. If any blocking queries fail, redirect to 500 (Internal Server Error) error
+  a. If any blocking queries fail, close connection and redirect to 500
+  (Internal Server Error) error page.
   page with info about failure.
 6. Submit non-blocking queries.
-  a. If any non-blocking fail, save error messages to $sqlErrors[].
+  a. If any non-blocking queries fail, save error messages to $sqlErrors[].
 7. Close connection to SQL database.
-8. Format and display errors in $sqlErrors[].
+8. If $sqlErrors[] isn't empty, format and display errors in $sqlErrors[].
   a. Use 500 (Internal Server Error) error page to display.
 9. Return status messages in HTML format (since this is through the web
     interface).
+  a. Use a 200 OK page to display manifest of actions.
+10.Go to last page after a short delay (written in JS).
 
 Notes:
 
