@@ -34,3 +34,10 @@ Notes:
 
 magic_quotes_gpc was removed in PHP 5.4.0
 > We really shouldn't be using it because it's just a stub now.
+
+SQL insert format:
+
+"insert into %s (%s) values (%s);"
+First arg is table name
+Second arg is column names, comma separated
+Third arg is values, comma separated

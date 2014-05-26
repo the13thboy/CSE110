@@ -1,0 +1,21 @@
+Pseudocode:
+
+
+Notes:
+
+magic_quotes_gpc was removed in PHP 5.4.0
+> We really shouldn't be using it because it's just a stub now.
+
+SQL select format:
+
+"SELECT [%s] %s FROM %s [WHERE %s] [GROUP BY %s] [HAVING %s] [ORDER BY %s %s]"
+Yikes.
+
+1. "ALL" or "DISTINCT".
+2. Column names or aggregated columns, comma-separated.
+3. Table names, comma-separated.
+4. Filter conditions, evaluated as logic.
+5. If #2 used aggregated functions, columns used to build groups.
+6. Filter conditions on #5, evaluated as logic.
+7. Column to sort on.
+8. "ASC" (default) or "DESC". Determines sort order for #7.
